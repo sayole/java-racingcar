@@ -1,33 +1,28 @@
-package RacingCar;
 
 import java.util.List;
 import java.util.Random;
 
 public class Car {
-    private static final int bound =10;
+    private static final int BOUND =10;
     private final String name;
     private int position = 0;
-
+    private RaceView raceView = new RaceView();
     public Car(String name){
         this.name = name;
     }
 
-    public void run(){
+    public void run() {
         Random random = new Random();
-        position += goForward(random.nextInt(bound));
+        position += goForward(random.nextInt(BOUND));
     }
 
-    private int goForward(int randomNumber){
+    private int goForward(int randomNumber) {
         if(randomNumber <= 3) return 0;
         return 1;
     }
 
     public void printScore(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(this.name+" : ");
-        for(int i = 0 ; i < position ; i++)
-            stringBuilder.append("-");
-        System.out.println(stringBuilder);
+        raceView.roundScore(this.name, this.position);
     }
 
     public int isMaxPosition(int position){

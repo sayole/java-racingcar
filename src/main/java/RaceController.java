@@ -1,17 +1,17 @@
-package RacingCar;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RaceController {
     private List<Car> cars = new ArrayList<>();
+    private RaceView raceView = new RaceView();
     private final int playTimes;
 
     public RaceController(List<String> players, int playTimes){
         this.playTimes = playTimes;
         if(isBadInput(players)){
-            System.out.println("입력 오류로 종료합니다.");
-            System.exit(0);
+            raceView.powerOff();
         }
         initializeCars(players);
     }
@@ -50,7 +50,7 @@ public class RaceController {
     public void resultScore(){
         List<String> winners = getWinners();
         String result = String.join(",",winners);
-        System.out.println(result + " 가 최종 우승했습니다.");
+        raceView.viewWinners(result);
     }
 
     public int getMaxPosition(){
